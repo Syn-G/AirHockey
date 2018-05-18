@@ -16,9 +16,9 @@ public abstract class Sprite extends EzImage {
     }
 
     //default constructor.  if used, all variables need to be added manually with setters
-    public Sprite(){
-        super();
-        rect = new Rectangle();
+    public Sprite(int x, int y, int w, int h, String fpath){
+        super(x,y,w,h,fpath);
+        rect = new Rectangle(x,y,w,h);
     }
 
     //sets location
