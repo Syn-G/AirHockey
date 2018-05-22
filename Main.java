@@ -1,7 +1,7 @@
  
 
 public class Main {
-    public static void main(String[]args){
+    /**public static void main(String[]args){
     UI win = new UI(0,0,1000,700,true);
     
     Card Flip = new Card(100,100,200,200,"Do you know the way?");
@@ -18,6 +18,6 @@ public class Main {
     win.addGameObject(Flip);
     win.addGameObject(Hearth);
     win.repaint();
-    }
+    }*/
    
 }

@@ -9,7 +9,12 @@
  */
 public class Boundaries extends Sprite
 {
-    public void move(){
-     
+    public Boundaries(int x,int y, int w, int h, String fpath){
+      super(x,y,w,h,fpath);
+
     }
+    public void move(){
+        
+    }
+    
 }

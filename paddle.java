@@ -6,11 +6,11 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class GoalPost extends Sprite
+public class Paddle extends Sprite
 {
     private int deltaX,deltaY;
     
-    public GoalPost(int x, int y, int w, int h,String fpath){
+    public Paddle(int x, int y, int w, int h,String fpath){
            super(x,y,w,h, fpath);
            deltaX=0;
            deltaY=0;
@@ -22,13 +22,14 @@ public class GoalPost extends Sprite
         this.setLocation(x + deltaX, y + deltaY);
         
     }
-    public void up(){
-     deltaY =+ 5;
+    public void down(){
+     deltaY += 5;
      deltaX = 0;
      move();
     }
-    public void down(){
+    public void up(){
         deltaY = -5;
+        deltaX =0;
         move();
     }
 }
