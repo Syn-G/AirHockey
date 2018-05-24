@@ -16,22 +16,27 @@ public class AirHockey extends UI implements KeyListener
     private Boundaries Bd;
 
     private Boundaries bd;
-    private GoalPost Gp;
+    private GoalPost Gp, Gp2;
+    private boolean inNet;
+    
     public AirHockey()
     {
         super(false);
         setFocusable(true);
         addKeyListener(this);
-
-        pld1 = new  Paddle(200,50,100,100,"PaddleOne.jpg");
-        pld2 = new  Paddle(700,100,100,100,"PaddleOne.jpg");
+        
+        pld1 = new  Paddle(200,50,100,100,"PaddleOne.png");
+        pld2 = new  Paddle(700,100,100,100,"PaddleOne.png");
         Bd = new Boundaries(0,0,1000,700,"hockey_rink_diagram.jpg");
-        Gp = new GoalPost(1000,500,50,50,"goalpost.jpg");
-        stone = new Puck(50,50,50,50,"puck.jpeg",this);
+        Gp = new GoalPost(900,300,50,50,"goalpost.jpg");
+        Gp2 = new GoalPost(200,300,50,50,"goalpost.jpg");
+        stone = new Puck(500,350,50,50,"puck.png",this);
         this.add(stone,0);
         this.add(pld1);
         this.add(pld2);
         this.add(Bd);
+        this.add(Gp);
+        this.add(Gp2);
         repaint();
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -49,18 +54,24 @@ public class AirHockey extends UI implements KeyListener
                     }
                     if(Gp.collides(stone)){
                      stone.setVisible(false);   
-                     stone.setDeltaX(0);
-                     stone.setDeltaY(0);
+                     
                      System.out.println("You got a point.");
+                     inNet = true;
+                     
                     }
                    
-                    //if(){
-                        
-                        
-                    //}
+                    
                     pld1.repaint();
                     pld2.repaint();
                     stone.repaint();
+                    if(inNet == true){
+                        
+                        stone.setVisible(true);   
+                     stone.setLocation(500,350);
+                     
+                     stone.move();
+                     stone.repaint();
+                    }
                 }
             },10, 1000/40);
 
@@ -74,7 +85,7 @@ public class AirHockey extends UI implements KeyListener
         if(keyCode == KeyEvent.VK_W){
             pld1.up();
         }
-        if(keyCode == KeyEvent.VK_L){
+        if(keyCode == KeyEvent.VK_S){
             pld1.down();
 
         }
