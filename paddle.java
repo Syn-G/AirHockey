@@ -18,7 +18,7 @@ public class Paddle extends Sprite
         
     }
     public void down(){
-     deltaY += 5;
+     deltaY = 5;
      deltaX = 0;
      move();
     }

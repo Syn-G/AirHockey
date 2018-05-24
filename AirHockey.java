@@ -1,6 +1,6 @@
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
-import java.util.Timer;
+import java.util.*;
 /**
  * Write a description of class AirHockey here.
  *
@@ -10,21 +10,25 @@ import java.util.Timer;
 public class AirHockey extends UI implements KeyListener
 {
     private GoalPost gp1,gp2;
-    private Puck     p;
+    private Puck     stone;
     private Paddle   pld1,pld2;
 
     private Boundaries Bd;
 
     private Boundaries bd;
+    private GoalPost Gp;
     public AirHockey()
     {
         super(false);
         setFocusable(true);
         addKeyListener(this);
 
-        pld1 = new  Paddle(200,50,50,50,"PaddleOne.jpg");
+        pld1 = new  Paddle(200,50,100,100,"PaddleOne.jpg");
         pld2 = new  Paddle(700,100,100,100,"PaddleOne.jpg");
         Bd = new Boundaries(0,0,1000,700,"hockey_rink_diagram.jpg");
+        Gp = new GoalPost(1000,500,50,50,"goalpost.jpg");
+        stone = new Puck(50,50,50,50,"puck.jpeg",this);
+        this.add(stone,0);
         this.add(pld1);
         this.add(pld2);
         this.add(Bd);
@@ -33,18 +37,36 @@ public class AirHockey extends UI implements KeyListener
         timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run(){
+                   
                     pld1.move();
                     pld2.move();
-
+                    stone.move();
+                    if(pld1.collides(stone)){
+                        stone.setDeltaX(stone.getDeltaX()*-1);
+                    }
+                    if(pld2.collides(stone)){
+                        stone.setDeltaX(stone.getDeltaX()*-1);
+                    }
+                    if(Gp.collides(stone)){
+                     stone.setVisible(false);   
+                     stone.setDeltaX(0);
+                     stone.setDeltaY(0);
+                     System.out.println("You got a point.");
+                    }
+                   
+                    //if(){
+                        
+                        
+                    //}
+                    pld1.repaint();
+                    pld2.repaint();
+                    stone.repaint();
                 }
-            },2*60*1000, 2*60*1000);
-        pld1 = new  Paddle(200,50,100,100,"PaddleOne.jpg");
-        this.add(pld1);
+            },10, 1000/40);
 
-        p = new Puck(50,50,50,50,"puck.jpeg");
-
-        this.add(p);
-        p.move();
+        
+        
+        
     }
 
     public void keyPressed(KeyEvent e){
@@ -54,7 +76,7 @@ public class AirHockey extends UI implements KeyListener
         }
         if(keyCode == KeyEvent.VK_L){
             pld1.down();
-            <<<<<<< HEAD
+
         }
         if(keyCode == KeyEvent.VK_UP){
             pld2.up();
@@ -62,18 +84,12 @@ public class AirHockey extends UI implements KeyListener
         if(keyCode == KeyEvent.VK_DOWN){
             pld2.down();
         }
+        this.repaint();
     }
-    pdl2.up();
-    }
-    if(keyCode == KeyEvent.VK_U){
-    pdl2.down();
-    }*/
-    >>>>>>> f19cc37d6b194837399387f39694b842d602407a
-    this.repaint();
-}
 
-public void keyReleased(KeyEvent e){}
 
-public void keyTyped(KeyEvent e){}
+    public void keyReleased(KeyEvent e){}
+
+    public void keyTyped(KeyEvent e){}
 
 }

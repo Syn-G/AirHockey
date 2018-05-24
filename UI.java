@@ -8,7 +8,7 @@ class UI extends JFrame{
   JComponent game;
   Scoreboard scoreBoard;
   public UI(boolean sb){
-    setBounds(0,0,1600,1600);
+    setBounds(0,0,1000,700);
     setVisible(true);
     setLayout(null);
     setResizable(false);

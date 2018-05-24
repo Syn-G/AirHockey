@@ -17,18 +17,7 @@ public class GoalPost extends Sprite
     }
 
     public void move(){
-        int x=this.getX();
-        int y=this.getY();
-        this.setLocation(x + deltaX, y + deltaY);
         
     }
-    public void up(){
-     deltaY =+ 5;
-     deltaX = 0;
-     move();
-    }
-    public void down(){
-        deltaY = -5;
-        move();
-    }
+   
 }
