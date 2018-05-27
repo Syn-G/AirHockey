@@ -16,7 +16,7 @@ public class Puck extends Sprite
         super(x,y,w,h,fpath);
         
         boarder = b;
-        changeImage(fpath);
+        //changeImage(fpath);
         
         Random gen = new Random();
         deltaX = gen.nextInt(10)+1;
