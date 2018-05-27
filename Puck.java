@@ -14,8 +14,7 @@ public class Puck extends Sprite
 
     public Puck(int x,int y,int w,int h, String fpath,AirHockey b){
         super(x,y,w,h,fpath);
-        deltaX = 8;
-        deltaY = -9;
+        
         boarder = b;
         changeImage(fpath);
         
@@ -44,11 +43,15 @@ public class Puck extends Sprite
 
         int x = this.getX(); 
         int y = this.getY();
+
         if((x<=0)||(x>=boarder.getWidth()-25))
         {
             deltaX*=-1;
         }
-        if((y<=0)||(y>=boarder.getHeight()-35))
+        
+        
+        if((y<=0)||(y>=boarder.getHeight()-50))
+
         {   
             deltaY*=-1;
         }
