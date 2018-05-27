@@ -18,7 +18,7 @@ public class Puck extends Sprite
         deltaY = -9;
         boarder = b;
         changeImage(fpath);
-        setSize(x, y);
+        
         Random gen = new Random();
         deltaX = gen.nextInt(10)+1;
         deltaY= gen.nextInt(10)+1;
@@ -44,11 +44,11 @@ public class Puck extends Sprite
 
         int x = this.getX(); 
         int y = this.getY();
-        if((x<=0)||(x>=boarder.getWidth()))
+        if((x<=0)||(x>=boarder.getWidth()-25))
         {
             deltaX*=-1;
         }
-        if((y<=0)||(y>=boarder.getHeight()))
+        if((y<=0)||(y>=boarder.getHeight()-35))
         {   
             deltaY*=-1;
         }
