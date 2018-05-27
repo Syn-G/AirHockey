@@ -14,7 +14,6 @@ public class AirHockey extends UI implements KeyListener
     private Paddle   pld1,pld2;
     private Boundaries Bd;
 
-    
     private boolean up,down,wKey,sKey = false;
     private Boundaries bd;
     private GoalPost Gp, Gp2;
@@ -34,16 +33,16 @@ public class AirHockey extends UI implements KeyListener
         pld1 = new  Paddle(200,50,100,100,"PaddleOne.png");
         pld2 = new  Paddle(700,100,100,100,"PaddleOne.png");
         Bd = new Boundaries(0,0,1000,700,"hockey_rink_diagram.jpg");
-        Gp = new GoalPost(900,300,50,50,"goalpost.jpg");
-        Gp2 = new GoalPost(200,300,50,50,"goalpost.jpg");
+        Gp = new GoalPost(900,300,75,75,"goalpost.jpg");
+        Gp2 = new GoalPost(100,300,75,75,"goalpost.jpg");
         stone = new Puck(500,350,50,50,"puck.png",this);
 
         this.add(stone,0);
         this.add(pld1);
         this.add(pld2);
         this.add(Bd);
-        this.add(Gp);
-        this.add(Gp2);
+        this.add(Gp,0);
+        this.add(Gp2,0);
         repaint();
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -58,69 +57,70 @@ public class AirHockey extends UI implements KeyListener
                     }
                     if(pld2.collides(stone)){
                         stone.setDeltaX(stone.getDeltaX()*-1);
+
                     }
                     if(Gp.collides(stone)){
-                        stone.setVisible(false);   
+                        System.out.println("Player 1 scored a point");
                         stone.setDeltaX(0);
                         stone.setDeltaY(0);
-                        System.out.println("You got a point.");
+                        stone.setVisible(false);
                     }
-
+                    if(Gp2.collides(stone)){
+                        System.out.println("Player 2 scored a point");
+                        stone.setDeltaX(0);
+                        stone.setDeltaY(0);
+                        stone.setVisible(false);
+                    }
                     //if(){
 
                     //}
 
-                    stone.setVisible(false);   
-
-                    System.out.println("You got a point.");
-                    inNet = true;
 
                     pld1.repaint();
                     pld2.repaint();
                     stone.repaint();
-                    if(inNet == true){
+                    /**if(inNet == true){
 
-                        stone.setVisible(true);   
-                        stone.setLocation(500,350);
+                    stone.setVisible(true);   
+                    stone.setLocation(500,350);
 
-                        stone.move();
-                        stone.repaint();
-                    }
+                    stone.move();
+                    stone.repaint();
+                    }*/
 
                 }
             },10, 1000/40);
+    }
+
+    public void keyPressed(KeyEvent e){
+        int keyCode = e.getKeyCode();
+
+        if(keyCode==KeyEvent.VK_W){
+
+            pld1.up();
         }
-                public void keyPressed(KeyEvent e){
-                    int keyCode = e.getKeyCode();
+        if(keyCode == KeyEvent.VK_S){
+            pld1.down();
+        }
+        if(keyCode== KeyEvent.VK_S){
+            pld1.down();
+        }
 
-                    if(keyCode==KeyEvent.VK_W){
+        if(keyCode==KeyEvent.VK_UP){
 
-                        pld1.up();
-                    }
-                    if(keyCode == KeyEvent.VK_S){
-                        pld1.down();
+            pld2.up();
+        }
 
-                        if(keyCode== KeyEvent.VK_S){
-                            pld1.down();
-                        }
+        if(keyCode == KeyEvent.VK_DOWN){
 
-                        if(keyCode==KeyEvent.VK_UP){
+            pld2.down();
+        }
 
-                            pld2.up();
-                        }
+        this.repaint();
 
-                        if(keyCode == KeyEvent.VK_DOWN){
+    }
 
-                            pld2.down();
-                        }
+    public void keyReleased(KeyEvent e){}
 
-                        this.repaint();
-                    }
-                }
-
-                public void keyReleased(KeyEvent e){}
-
-
-                public void keyTyped(KeyEvent e){}
-
-            }
+    public void keyTyped(KeyEvent e){}
+}
